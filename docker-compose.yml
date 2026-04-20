@@ -1,0 +1,18 @@
+services:
+  rdesktop:
+    build:
+      context: .
+      dockerfile: Containerfile
+    image: rdesktop:latest
+    container_name: rdesktop
+    restart: unless-stopped
+    ports:
+      - "3389:3389"
+    devices:
+      - /dev/dri:/dev/dri
+    environment:
+      RDESKTOP_PASSWORD: ${RDESKTOP_PASSWORD:-user}
+    volumes:
+      - ./home:/home/user:Z
+      - /etc/localtime:/etc/localtime:ro
+    shm_size: "1gb"
