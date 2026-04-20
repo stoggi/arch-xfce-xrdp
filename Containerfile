@@ -25,6 +25,7 @@ RUN pacman -Syu --noconfirm \
         jq \
         zed \
         ttf-hack \
+        ttf-hack-nerd \
         git \
         rustup \
     && pacman -Scc --noconfirm
@@ -62,6 +63,9 @@ RUN printf '%s\n' \
         'exec dbus-run-session -- startxfce4' \
         > /etc/xrdp/startwm.sh \
     && chmod 0755 /etc/xrdp/startwm.sh
+
+RUN install -d -m 0755 /etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml
+COPY xfce4-terminal.xml /etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml
 
 COPY entrypoint.sh /usr/local/bin/rdesktop-entrypoint
 RUN chmod 0755 /usr/local/bin/rdesktop-entrypoint

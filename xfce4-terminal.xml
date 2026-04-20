@@ -1,0 +1,8 @@
+<?xml version="1.1" encoding="UTF-8"?>
+
+<channel name="xfce4-terminal" version="1.0">
+  <property name="font-use-system" type="bool" value="false"/>
+  <property name="font-name" type="string" value="Hack Nerd Font 12"/>
+  <property name="misc-default-geometry" type="string" value="71x30"/>
+  <property name="encoding" type="string" value="UTF-8"/>
+</channel>
