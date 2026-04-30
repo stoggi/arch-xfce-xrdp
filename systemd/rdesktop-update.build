@@ -1,0 +1,6 @@
+[Build]
+ImageTag=localhost/rdesktop
+SetWorkingDirectory=.
+File=./rdesktop.containerfile
+Pull=always
+PodmanArgs=--no-cache

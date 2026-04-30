@@ -1,0 +1,23 @@
+[Unit]
+Description=Arch + xfce4 remote desktop over RDP
+PartOf=rdesktop.target
+
+[Container]
+Image=localhost/rdesktop:latest
+AddDevice=/dev/dri:/dev/dri
+EnvironmentFile=%h/apps/rdesktop/.env
+Volume=/etc/timezone:/etc/timezone:ro
+Volume=/etc/localtime:/etc/localtime:ro
+Volume=%h/apps/rdesktop/home:/home/user:Z
+Volume=/home/user/services/rdesktop/entrypoint.sh:/usr/local/bin/rdesktop-entrypoint:ro
+Volume=/home/user/services/rdesktop/xfce4-terminal.xml:/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml
+Mount=type=tmpfs,destination=/dev/shm,tmpfs-size=1073741824
+PublishPort=3389:3389
+GIDMap=+g992:@992:1
+GIDMap=+g44:@44:1
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=rdesktop.target
